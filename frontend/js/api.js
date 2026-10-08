@@ -3,7 +3,9 @@
  * Campus Event Registration System
  */
 
-const API_BASE = 'http://localhost:8080';
+// Auto-detect: use local backend when running on localhost, show notice when deployed
+const IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE = IS_LOCAL ? 'http://localhost:8080' : 'http://localhost:8080'; // Replace with your deployed backend URL
 
 // ── Auth & Session Storage ──────────────────────────────────────────────────
 
