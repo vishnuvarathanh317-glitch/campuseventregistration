@@ -11,15 +11,9 @@ RUN mkdir -p lib && \
 # Copy Java source files
 COPY backend/src/main/java/ src/
 
-# Compile: util → model → dao → service → controller → Main
+# Compile all Java source files
 RUN mkdir -p out && \
-    find src/util     -name "*.java" > sources.txt 2>/dev/null || true && \
-    find src/model    -name "*.java" >> sources.txt 2>/dev/null || true && \
-    find src/dao      -name "*.java" >> sources.txt 2>/dev/null || true && \
-    find src/service  -name "*.java" >> sources.txt 2>/dev/null || true && \
-    find src/controller -name "*.java" >> sources.txt 2>/dev/null || true && \
-    find src -maxdepth 1 -name "*.java" >> sources.txt 2>/dev/null || true && \
-    javac -cp "lib/*" -d out @sources.txt
+    javac -cp "lib/*" -d out $(find src -name "*.java")
 
 # ── Stage 2: Run ─────────────────────────────────────────────────────────────
 FROM eclipse-temurin:17-jre-alpine
@@ -30,12 +24,13 @@ WORKDIR /app
 COPY --from=builder /app/out ./out
 COPY --from=builder /app/lib ./lib
 
-# Copy config (will be overridden by Render env vars at runtime)
+# Copy default config if present
 COPY backend/config.properties ./config.properties
 
-# Render assigns PORT via environment variable — default 8080
+# Render assigns PORT via environment variable
 EXPOSE 8080
 
 ENV PORT=8080
 
 CMD ["java", "-cp", "out:lib/*", "Main"]
+

@@ -40,10 +40,9 @@ public class Main {
             DatabaseConnection.getInstance().getConnection();
             System.out.println("[DB] Connected successfully.");
         } catch (Exception e) {
-            System.err.println("[DB] Connection FAILED: " + e.getMessage());
-            System.err.println("     → Check config.properties (db.host, db.username, db.password)");
-            System.err.println("     → Ensure MySQL is running and campus_events DB exists.");
-            System.exit(1);
+            System.err.println("[DB] Initial connection warning: " + e.getMessage());
+            System.err.println("     → Ensure MySQL is running or env vars (DB_HOST, DB_USER, DB_PASSWORD) are set.");
+            System.err.println("     → Server will continue running and retry on incoming requests.");
         }
 
         // ── Create HTTP server ─────────────────────────────────────────────────

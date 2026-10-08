@@ -39,6 +39,17 @@ public class Router implements HttpHandler {
         Map<String, String> queryParams = parseQuery(exchange.getRequestURI().getQuery());
 
         try {
+            // ── /api/health ─────────────────────────────────────────────────
+            if (path.equals("/api/health") || path.equals("/api")) {
+                boolean dbOk = false;
+                try {
+                    dbOk = DatabaseConnection.getInstance().getConnection() != null;
+                } catch (Exception ignored) {}
+                String json = "{\"status\":\"ok\",\"service\":\"campus-events-api\",\"db\":" + (dbOk ? "\"connected\"" : "\"disconnected\"") + "}";
+                sendJson(exchange, 200, json);
+                return;
+            }
+
             // ── /api/auth/* ─────────────────────────────────────────────────
             if (path.startsWith("/api/auth/")) {
                 authController.handle(exchange, path, method);
