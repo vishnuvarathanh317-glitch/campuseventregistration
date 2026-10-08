@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Export Data — Admin Portal</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="theme-dark admin-body">
+
+  <div class="blob-bg blob-purple"></div>
+  <div class="blob-bg blob-cyan"></div>
+
+  <div class="admin-wrapper">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar glass-card">
+      <div class="sidebar-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-title">CAMPUS<span class="text-gradient">ADMIN</span></span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html" class="sidebar-link">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="events.html" class="sidebar-link">
+          <span class="nav-icon">📅</span>
+          <span>Manage Events</span>
+        </a>
+        <a href="registrations.html" class="sidebar-link">
+          <span class="nav-icon">🎟️</span>
+          <span>Registrations</span>
+        </a>
+        <a href="users.html" class="sidebar-link">
+          <span class="nav-icon">👥</span>
+          <span>Students & Users</span>
+        </a>
+        <a href="export.html" class="sidebar-link active">
+          <span class="nav-icon">📥</span>
+          <span>Export Data</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../events.html" class="sidebar-link text-muted">
+          <span class="nav-icon">🌐</span>
+          <span>View Public Site</span>
+        </a>
+        <button class="btn btn-outline-danger btn-block btn-sm" style="margin-top: 10px;" onclick="Auth.logout()">
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-topbar glass-card">
+        <div>
+          <h2 class="admin-page-title">Data Export Center</h2>
+          <p class="text-muted text-sm">Download official CSV spreadsheets for reporting, attendance verification, and archiving</p>
+        </div>
+      </header>
+
+      <div class="admin-export-grid">
+        <!-- Export 1: Registrations -->
+        <div class="export-card glass-card">
+          <div class="export-card-icon">🎟️</div>
+          <h3>Event Registrations & Passes</h3>
+          <p class="text-muted text-sm">
+            Complete report of all attendee registrations, student details, department, pass codes, and enrollment statuses.
+          </p>
+
+          <div class="export-filters-box">
+            <div class="form-group">
+              <label for="export-event-select" class="form-label text-xs">Filter by Event (Optional):</label>
+              <select id="export-event-select" class="form-select-sm">
+                <option value="">All Events</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="export-dept-select" class="form-label text-xs">Filter by Department (Optional):</label>
+              <select id="export-dept-select" class="form-select-sm">
+                <option value="">All Departments</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Business Administration">Business Administration</option>
+                <option value="Biotechnology">Biotechnology</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-block shadow-glow" onclick="downloadExport('registrations')">
+            📥 Download Registrations CSV
+          </button>
+        </div>
+
+        <!-- Export 2: Students Roster -->
+        <div class="export-card glass-card">
+          <div class="export-card-icon">👥</div>
+          <h3>Student & User Accounts</h3>
+          <p class="text-muted text-sm">
+            Export the complete student directory including names, college emails, phone numbers, departments, and academic years.
+          </p>
+          <div style="flex-grow: 1;"></div>
+          <button class="btn btn-outline btn-block" style="margin-top: 30px;" onclick="downloadExport('users')">
+            📥 Download Student Accounts CSV
+          </button>
+        </div>
+
+        <!-- Export 3: Master Events Directory -->
+        <div class="export-card glass-card">
+          <div class="export-card-icon">📅</div>
+          <h3>Master Events Directory</h3>
+          <p class="text-muted text-sm">
+            Download full event schedule metadata, dates, venues, organizers, capacity limits, registered counts, and statuses.
+          </p>
+          <div style="flex-grow: 1;"></div>
+          <button class="btn btn-outline btn-block" style="margin-top: 30px;" onclick="downloadExport('events')">
+            📥 Download Events Master CSV
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

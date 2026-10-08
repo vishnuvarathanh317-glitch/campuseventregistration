@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Events — Discover, Register & Experience College Life</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/events.css">
+</head>
+<body class="theme-dark">
+
+  <!-- Glow background blobs -->
+  <div class="blob-bg blob-purple"></div>
+  <div class="blob-bg blob-cyan"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-glass">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-title">CAMPUS<span class="text-gradient">EVENTS</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="events.html" class="nav-link">Explore Events</a>
+        <a href="index.html#categories" class="nav-link">Categories</a>
+        <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+      </nav>
+      <div id="navbar-auth-section" class="nav-auth">
+        <!-- Injected dynamically via api.js -->
+        <a href="login.html" class="btn btn-outline btn-sm">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-badge animate-fade-in">
+        <span class="pulse-dot"></span>
+        <span>Spring & Fall Semester 2026 Live Schedule</span>
+      </div>
+      <h1 class="hero-main-title animate-fade-in-up">
+        Unleash Your Potential.<br>
+        <span class="text-gradient">Experience Campus Like Never Before.</span>
+      </h1>
+      <p class="hero-desc animate-fade-in-up delay-1">
+        Discover hackathons, cultural fests, tech symposiums, sports leagues, and leadership workshops.
+        Register instantly and get your digital event pass in seconds.
+      </p>
+      <div class="hero-cta-group animate-fade-in-up delay-2">
+        <a href="events.html" class="btn btn-primary btn-lg shadow-glow">
+          <span>Explore All Events</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a href="register.html" class="btn btn-outline btn-lg">
+          <span>Join as Student</span>
+        </a>
+      </div>
+
+      <!-- Quick Metrics Counter Strip -->
+      <div class="hero-stats-strip animate-fade-in-up delay-3">
+        <div class="stat-strip-item">
+          <span class="stat-number text-gradient">50+</span>
+          <span class="stat-label">Annual Campus Events</span>
+        </div>
+        <div class="stat-strip-divider"></div>
+        <div class="stat-strip-item">
+          <span class="stat-number text-gradient">2,500+</span>
+          <span class="stat-label">Active Students</span>
+        </div>
+        <div class="stat-strip-divider"></div>
+        <div class="stat-strip-item">
+          <span class="stat-number text-gradient">100%</span>
+          <span class="stat-label">Paperless Digital Passes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Showcase -->
+  <section id="categories" class="section-padded">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">DIVERSE EXPERIENCES</span>
+        <h2 class="section-title">Explore by Category</h2>
+        <p class="section-subtitle">Find what drives your passion, from coding marathons to cultural showcases.</p>
+      </div>
+
+      <div class="category-grid">
+        <a href="events.html?category=Technical" class="category-card card-hover-tilt">
+          <div class="cat-icon-wrapper cat-tech">💻</div>
+          <h3>Technical & Coding</h3>
+          <p>Hackathons, AI symposiums, web design battles, and robotics championships.</p>
+          <span class="cat-link">Browse Technical →</span>
+        </a>
+
+        <a href="events.html?category=Cultural" class="category-card card-hover-tilt">
+          <div class="cat-icon-wrapper cat-cult">🎭</div>
+          <h3>Cultural & Arts</h3>
+          <p>Music fests, drama showcases, dance competitions, and photography galleries.</p>
+          <span class="cat-link">Browse Cultural →</span>
+        </a>
+
+        <a href="events.html?category=Sports" class="category-card card-hover-tilt">
+          <div class="cat-icon-wrapper cat-sports">🏆</div>
+          <h3>Sports & Tournaments</h3>
+          <p>Inter-department cricket, football leagues, basketball faceoffs, and chess.</p>
+          <span class="cat-link">Browse Sports →</span>
+        </a>
+
+        <a href="events.html?category=Workshop" class="category-card card-hover-tilt">
+          <div class="cat-icon-wrapper cat-work">🚀</div>
+          <h3>Hands-on Workshops</h3>
+          <p>Cloud architecture, UI/UX sprints, cybersecurity drills, and public speaking.</p>
+          <span class="cat-link">Browse Workshops →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Upcoming Events Section -->
+  <section class="section-padded bg-subtle">
+    <div class="container">
+      <div class="section-header-flex">
+        <div>
+          <span class="section-eyebrow">HOT RIGHT NOW</span>
+          <h2 class="section-title">Featured Campus Events</h2>
+        </div>
+        <a href="events.html" class="btn btn-outline">View All Events →</a>
+      </div>
+
+      <div id="events-grid" class="events-grid-layout">
+        <!-- Rendered dynamically by events.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="section-padded">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">EFFORTLESS JOURNEY</span>
+        <h2 class="section-title">How Campus Events Works</h2>
+        <p class="section-subtitle">A seamless registration experience built for modern campus life.</p>
+      </div>
+
+      <div class="workflow-steps-grid">
+        <div class="step-card">
+          <div class="step-badge">01</div>
+          <h3>Create Account</h3>
+          <p>Sign up with your student email and department to personalize your event feed.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">02</div>
+          <h3>One-Click Register</h3>
+          <p>Browse live events, check remaining seat capacity, and secure your spot instantly.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">03</div>
+          <h3>Show Your Digital Pass</h3>
+          <p>Access your digital ticket from your dashboard and scan at the venue for instant entry.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-dark">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-title">CAMPUS<span class="text-gradient">EVENTS</span></span>
+        <p class="text-muted" style="margin-top: 10px; max-width: 320px;">
+          The official full-stack event management and registration portal for collegiate excellence.
+        </p>
+      </div>
+      <div class="footer-links-group">
+        <h4>Navigation</h4>
+        <a href="events.html">Events Directory</a>
+        <a href="login.html">Student Login</a>
+        <a href="register.html">Sign Up</a>
+        <a href="admin/index.html">Admin Portal</a>
+      </div>
+      <div class="footer-links-group">
+        <h4>Quick Access</h4>
+        <a href="dashboard.html">Student Dashboard</a>
+        <a href="my-registrations.html">My Digital Tickets</a>
+      </div>
+    </div>
+    <div class="footer-bottom text-center">
+      <p class="text-muted">© 2026 Campus Event Registration System. Built with pure Java & modern web standards.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/events.js"></script>
+</body>
+</html>

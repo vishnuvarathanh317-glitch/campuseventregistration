@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In — Campus Event Registration System</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="theme-dark auth-page-body">
+
+  <div class="blob-bg blob-purple"></div>
+  <div class="blob-bg blob-cyan"></div>
+
+  <div class="auth-container">
+    <div class="auth-header text-center">
+      <a href="index.html" class="auth-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-title">CAMPUS<span class="text-gradient">EVENTS</span></span>
+      </a>
+      <h2>Welcome Back</h2>
+      <p class="text-muted">Sign in to manage your registrations and discover campus activities</p>
+    </div>
+
+    <!-- Quick Demo Logins Pill Strip for easy evaluation -->
+    <div class="demo-credentials-banner">
+      <span class="demo-label">⚡ Quick Demo Autofill:</span>
+      <div class="demo-btns">
+        <button type="button" class="btn-demo-pill" onclick="fillDemoCredentials('student')">Student Demo</button>
+        <button type="button" class="btn-demo-pill" onclick="fillDemoCredentials('admin')">Admin Demo</button>
+      </div>
+    </div>
+
+    <div class="glass-card auth-card">
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <div class="input-icon-wrapper">
+            <span class="input-icon">✉️</span>
+            <input type="email" id="email" class="form-input" placeholder="student@campus.edu" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label-row">
+            <label for="password" class="form-label">Password</label>
+          </div>
+          <div class="input-icon-wrapper">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+          </div>
+        </div>
+
+        <div class="form-checkbox-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="remember-me">
+            <span>Remember me on this device</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-glow" style="margin-top: 10px;">
+          <span>Sign In</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="auth-footer text-center">
+      <p class="text-muted">
+        Don't have an account yet?
+        <a href="register.html" class="text-gradient font-bold">Register as a Student</a>
+      </p>
+      <p style="margin-top: 8px;">
+        <a href="index.html" class="text-muted text-sm">← Back to Homepage</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

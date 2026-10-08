@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration — Campus Events</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="theme-dark auth-page-body">
+
+  <div class="blob-bg blob-purple"></div>
+  <div class="blob-bg blob-cyan"></div>
+
+  <div class="auth-container auth-container-wide">
+    <div class="auth-header text-center">
+      <a href="index.html" class="auth-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-title">CAMPUS<span class="text-gradient">EVENTS</span></span>
+      </a>
+      <h2>Create Your Student Account</h2>
+      <p class="text-muted">Join the campus community, register for exclusive events, and track your passes</p>
+    </div>
+
+    <div class="glass-card auth-card">
+      <form id="register-form">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name *</label>
+            <div class="input-icon-wrapper">
+              <span class="input-icon">👤</span>
+              <input type="text" id="name" class="form-input" placeholder="Alex Chen" required autocomplete="name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Student Email *</label>
+            <div class="input-icon-wrapper">
+              <span class="input-icon">✉️</span>
+              <input type="email" id="email" class="form-input" placeholder="alex.chen@student.campus.edu" required autocomplete="email">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="department" class="form-label">Department *</label>
+            <select id="department" class="form-select" required>
+              <option value="">Select your department...</option>
+              <option value="Computer Science">Computer Science & Engineering</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Electrical Engineering">Electrical & Electronics</option>
+              <option value="Mechanical Engineering">Mechanical Engineering</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Business Administration">Business Administration (MBA/BBA)</option>
+              <option value="Biotechnology">Biotechnology</option>
+              <option value="Design & Media">Design & Media Arts</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="year" class="form-label">Academic Year *</label>
+            <select id="year" class="form-select" required>
+              <option value="1">1st Year (Freshman)</option>
+              <option value="2">2nd Year (Sophomore)</option>
+              <option value="3">3rd Year (Junior)</option>
+              <option value="4">4th Year (Senior)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone" class="form-label">Contact Phone</label>
+          <div class="input-icon-wrapper">
+            <span class="input-icon">📱</span>
+            <input type="tel" id="phone" class="form-input" placeholder="+1 (555) 000-0000" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="password" class="form-label">Password *</label>
+            <div class="input-icon-wrapper">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="password" class="form-input" placeholder="••••••••" required autocomplete="new-password">
+            </div>
+            <!-- Live Password Strength Meter -->
+            <div class="password-strength-container" style="margin-top: 6px;">
+              <div class="strength-bar-track">
+                <div id="password-strength-bar" class="strength-bar-fill"></div>
+              </div>
+              <span id="password-strength-text" class="strength-text text-muted text-xs">Enter a strong password</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-password" class="form-label">Confirm Password *</label>
+            <div class="input-icon-wrapper">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="confirm-password" class="form-input" placeholder="••••••••" required autocomplete="new-password">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-glow" style="margin-top: 16px;">
+          <span>Create Account</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="auth-footer text-center">
+      <p class="text-muted">
+        Already have a student account?
+        <a href="login.html" class="text-gradient font-bold">Sign In here</a>
+      </p>
+      <p style="margin-top: 8px;">
+        <a href="index.html" class="text-muted text-sm">← Back to Homepage</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

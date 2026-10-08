@@ -1,0 +1,22 @@
+# Compiled Java classes
+backend/out/
+backend/*.class
+
+# MySQL connector jar (large binary)
+backend/lib/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test scripts
+test_login.ps1
+test_all.ps1
+
+# Logs
+*.log

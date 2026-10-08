@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Registered Events — Campus Events</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="theme-dark">
+
+  <div class="blob-bg blob-purple"></div>
+  <div class="blob-bg blob-cyan"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-glass">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-title">CAMPUS<span class="text-gradient">EVENTS</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="events.html" class="nav-link">Explore Events</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="my-registrations.html" class="nav-link active">My Passes</a>
+      </nav>
+      <div id="navbar-auth-section" class="nav-auth"></div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 30px; padding-bottom: 60px;">
+    <div class="page-header-flex">
+      <div>
+        <h1 class="page-title">My Event Passes & Registrations</h1>
+        <p class="page-subtitle">Show your digital pass QR code at the event venue for fast check-in.</p>
+      </div>
+      <a href="events.html" class="btn btn-primary shadow-glow">+ Discover More Events</a>
+    </div>
+
+    <!-- Registration Filter Tabs -->
+    <div class="reg-tabs-bar glass-card">
+      <div class="reg-tabs-group">
+        <button class="reg-tab-btn active" data-tab="all">All Registrations</button>
+        <button class="reg-tab-btn" data-tab="confirmed">Active / Confirmed Passes</button>
+        <button class="reg-tab-btn" data-tab="cancelled">Cancelled</button>
+      </div>
+      <div class="reg-count-display">
+        <span id="reg-count-badge" class="badge badge-primary">0</span> passes
+      </div>
+    </div>
+
+    <!-- Ticket Passes Grid / Container -->
+    <div id="my-registrations-container" class="tickets-container">
+      <div style="text-align: center; padding: 60px 0;">
+        <span class="spinner-sm"></span> Loading your tickets...
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-dark">
+    <div class="container footer-bottom text-center">
+      <p class="text-muted">© 2026 Campus Event Registration System.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/registrations.js"></script>
+</body>
+</html>

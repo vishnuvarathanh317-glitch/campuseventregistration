@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard — Campus Events</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="theme-dark">
+
+  <div class="blob-bg blob-purple"></div>
+  <div class="blob-bg blob-cyan"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-glass">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-title">CAMPUS<span class="text-gradient">EVENTS</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="events.html" class="nav-link">Explore Events</a>
+        <a href="dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="my-registrations.html" class="nav-link">My Passes</a>
+      </nav>
+      <div id="navbar-auth-section" class="nav-auth">
+        <!-- Handled dynamically by api.js -->
+      </div>
+    </div>
+  </header>
+
+  <main class="container dash-main-container">
+    <!-- Student Greeting Hero -->
+    <div class="dash-welcome-card glass-card">
+      <div class="welcome-text-side">
+        <div class="dept-badge" id="user-dept-badge">Loading Department...</div>
+        <h1 id="user-greeting">Welcome back! 👋</h1>
+        <p class="text-muted">Track your upcoming registrations, get entry passes, and discover campus opportunities.</p>
+      </div>
+      <div class="welcome-actions">
+        <a href="events.html" class="btn btn-primary shadow-glow">Explore New Events →</a>
+        <a href="my-registrations.html" class="btn btn-outline">My Digital Passes</a>
+      </div>
+    </div>
+
+    <!-- Quick Stats Grid -->
+    <div class="dash-stats-grid">
+      <div class="stat-card glass-card">
+        <div class="stat-icon-wrapper stat-cyan">🎟️</div>
+        <div class="stat-content">
+          <span class="stat-label">Active Registrations</span>
+          <h2 class="stat-value text-gradient" id="stat-total-registrations">0</h2>
+        </div>
+      </div>
+
+      <div class="stat-card glass-card">
+        <div class="stat-icon-wrapper stat-purple">📅</div>
+        <div class="stat-content">
+          <span class="stat-label">Campus Events Live</span>
+          <h2 class="stat-value text-gradient" id="stat-total-events">0</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Content 2-Column Split -->
+    <div class="dash-content-grid">
+      <!-- Left Column: Upcoming Registered Events -->
+      <div class="dash-column-main">
+        <div class="dash-section-card glass-card">
+          <div class="card-header-flex">
+            <h3>Your Enrolled Events</h3>
+            <a href="my-registrations.html" class="link-subtle">View All Passes →</a>
+          </div>
+
+          <div id="dashboard-registrations-list" class="dash-events-list">
+            <div style="text-align: center; padding: 30px;">
+              <span class="spinner-sm"></span> Loading your registrations...
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Recommended Events -->
+      <div class="dash-column-side">
+        <div class="dash-section-card glass-card">
+          <div class="card-header-flex">
+            <h3>Recommended For You</h3>
+            <a href="events.html" class="link-subtle">More →</a>
+          </div>
+
+          <div id="dashboard-recommended-list" class="dash-recommended-list">
+            <div style="text-align: center; padding: 30px;">
+              <span class="spinner-sm"></span> Loading recommendations...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-dark" style="margin-top: 60px;">
+    <div class="container footer-bottom text-center">
+      <p class="text-muted">© 2026 Campus Event Registration System.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

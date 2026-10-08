@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Users — Admin Portal</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="theme-dark admin-body">
+
+  <div class="blob-bg blob-purple"></div>
+  <div class="blob-bg blob-cyan"></div>
+
+  <div class="admin-wrapper">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar glass-card">
+      <div class="sidebar-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-title">CAMPUS<span class="text-gradient">ADMIN</span></span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html" class="sidebar-link">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="events.html" class="sidebar-link">
+          <span class="nav-icon">📅</span>
+          <span>Manage Events</span>
+        </a>
+        <a href="registrations.html" class="sidebar-link">
+          <span class="nav-icon">🎟️</span>
+          <span>Registrations</span>
+        </a>
+        <a href="users.html" class="sidebar-link active">
+          <span class="nav-icon">👥</span>
+          <span>Students & Users</span>
+        </a>
+        <a href="export.html" class="sidebar-link">
+          <span class="nav-icon">📥</span>
+          <span>Export Data</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../events.html" class="sidebar-link text-muted">
+          <span class="nav-icon">🌐</span>
+          <span>View Public Site</span>
+        </a>
+        <button class="btn btn-outline-danger btn-block btn-sm" style="margin-top: 10px;" onclick="Auth.logout()">
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-topbar glass-card">
+        <div>
+          <h2 class="admin-page-title">Students & Accounts Directory</h2>
+          <p class="text-muted text-sm">View registered student accounts, departments, and user roles</p>
+        </div>
+      </header>
+
+      <!-- Search Bar -->
+      <div class="admin-card glass-card" style="margin-bottom: 20px; padding: 16px 20px;">
+        <div class="search-input-box" style="max-width: 400px;">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="user-search" class="search-field" placeholder="Search students by name, email, or department...">
+        </div>
+      </div>
+
+      <!-- Users Master Table -->
+      <div class="admin-card glass-card">
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Student / User Name</th>
+                <th>Email Address</th>
+                <th>Department</th>
+                <th>Academic Year</th>
+                <th>Role</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="admin-users-tbody">
+              <tr><td colspan="6" class="text-center text-muted">Loading students...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

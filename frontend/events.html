@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Campus Events — Live Schedule & Registrations</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/events.css">
+</head>
+<body class="theme-dark">
+
+  <div class="blob-bg blob-purple"></div>
+  <div class="blob-bg blob-cyan"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-glass">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-title">CAMPUS<span class="text-gradient">EVENTS</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="events.html" class="nav-link active">Explore Events</a>
+        <a href="index.html#categories" class="nav-link">Categories</a>
+        <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+      </nav>
+      <div id="navbar-auth-section" class="nav-auth">
+        <a href="login.html" class="btn btn-outline btn-sm">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Events Explorer Header -->
+  <section class="events-header-section">
+    <div class="container">
+      <h1 class="page-title">Campus Events Directory</h1>
+      <p class="page-subtitle">Search, filter, and register for upcoming university events, workshops, and competitions.</p>
+
+      <!-- Search & Filters Container -->
+      <div class="explorer-toolbar glass-card">
+        <!-- Search Input Bar -->
+        <div class="search-input-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="search-field" placeholder="Search events by title, keyword, venue, or organizer...">
+        </div>
+
+        <!-- Category Pills -->
+        <div class="category-pills-row">
+          <button class="filter-pill active" data-category="all">All Events</button>
+          <button class="filter-pill" data-category="Technical">💻 Technical</button>
+          <button class="filter-pill" data-category="Cultural">🎭 Cultural</button>
+          <button class="filter-pill" data-category="Sports">🏆 Sports</button>
+          <button class="filter-pill" data-category="Workshop">🚀 Workshop</button>
+          <button class="filter-pill" data-category="Seminar">🎙️ Seminar</button>
+        </div>
+
+        <!-- Filter Selects Row -->
+        <div class="toolbar-controls-row">
+          <div class="control-item">
+            <label for="status-filter" class="control-label">Status:</label>
+            <select id="status-filter" class="form-select-sm">
+              <option value="">All Statuses</option>
+              <option value="open">Open for Registration</option>
+              <option value="upcoming">Upcoming</option>
+              <option value="full">Sold Out / Full</option>
+              <option value="completed">Past Events</option>
+            </select>
+          </div>
+
+          <div class="control-item">
+            <label for="sort-filter" class="control-label">Sort By:</label>
+            <select id="sort-filter" class="form-select-sm">
+              <option value="date_asc">Date: Upcoming First</option>
+              <option value="date_desc">Date: Latest First</option>
+              <option value="seats">Available Seats</option>
+              <option value="title">Event Name (A-Z)</option>
+            </select>
+          </div>
+
+          <div class="events-counter-badge" id="events-count">Loading events...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Grid Section -->
+  <section class="section-padded" style="padding-top: 10px;">
+    <div class="container">
+      <div id="events-grid" class="events-grid-layout">
+        <!-- Event cards rendered dynamically via events.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-dark">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-title">CAMPUS<span class="text-gradient">EVENTS</span></span>
+        <p class="text-muted" style="margin-top: 10px;">The official campus event registration portal.</p>
+      </div>
+      <div class="footer-links-group">
+        <h4>Pages</h4>
+        <a href="events.html">Events Directory</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Sign Up</a>
+        <a href="admin/index.html">Admin</a>
+      </div>
+    </div>
+    <div class="footer-bottom text-center">
+      <p class="text-muted">© 2026 Campus Event Registration System.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/events.js"></script>
+</body>
+</html>
