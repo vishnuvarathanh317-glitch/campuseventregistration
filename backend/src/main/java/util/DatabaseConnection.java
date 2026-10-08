@@ -25,6 +25,37 @@ public class DatabaseConnection {
     }
 
     private void loadConfig() {
+        // 1. Check environment variables first (used on Render, Railway, etc.)
+        String envHost     = System.getenv("DB_HOST");
+        String envPort     = System.getenv("DB_PORT");
+        String envName     = System.getenv("DB_NAME");
+        String envUser     = System.getenv("DB_USERNAME");
+        String envPass     = System.getenv("DB_PASSWORD");
+        String envUrl      = System.getenv("DB_URL"); // full JDBC URL override
+
+        if (envUrl != null && !envUrl.isBlank()) {
+            // Full JDBC URL provided (e.g. Render internal DB URL)
+            this.url      = envUrl;
+            this.username = envUser != null ? envUser : "";
+            this.password = envPass != null ? envPass : "";
+            System.out.println("[DB] Using environment variable DB_URL");
+            return;
+        }
+
+        if (envHost != null && !envHost.isBlank()) {
+            // Individual env vars provided
+            String host = envHost.trim();
+            String port = envPort != null ? envPort.trim() : "3306";
+            String name = envName != null ? envName.trim() : "campus_events";
+            this.username = envUser != null ? envUser.trim() : "root";
+            this.password = envPass != null ? envPass.trim() : "";
+            this.url = "jdbc:mysql://" + host + ":" + port + "/" + name
+                     + "?useSSL=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+            System.out.println("[DB] Loaded from env vars: user=" + this.username + ", db=" + name + ", host=" + host + ":" + port);
+            return;
+        }
+
+        // 2. Fall back to config.properties (local development)
         Properties props = new Properties();
         File configFile = new File("config.properties");
         if (!configFile.exists()) {

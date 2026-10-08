@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: campus-event-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: DB_HOST
+        sync: false        # Set manually in Render dashboard
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_NAME
+        value: campus_events
+      - key: DB_USERNAME
+        sync: false        # Set manually in Render dashboard
+      - key: DB_PASSWORD
+        sync: false        # Set manually in Render dashboard

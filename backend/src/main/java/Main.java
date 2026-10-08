@@ -22,7 +22,14 @@ public class Main {
         } catch (Exception e) {
             System.err.println("[WARN] Could not load config.properties, using defaults.");
         }
-        int port = Integer.parseInt(props.getProperty("server.port", "8080"));
+        // ── Determine port (env var PORT takes priority for Render/cloud hosting) ──
+        int port;
+        String envPort = System.getenv("PORT");
+        if (envPort != null && !envPort.isBlank()) {
+            port = Integer.parseInt(envPort.trim());
+        } else {
+            port = Integer.parseInt(props.getProperty("server.port", "8080"));
+        }
 
         // ── Test DB connection early ───────────────────────────────────────────
         System.out.println("================================================");

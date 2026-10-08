@@ -1,0 +1,12 @@
+# Copy this file to config.properties and fill in your values
+# For Render deployment, set these as environment variables instead
+
+# Server
+server.port=8080
+
+# Database (Local Development)
+db.host=localhost
+db.port=3306
+db.name=campus_events
+db.username=campus_user
+db.password=YOUR_PASSWORD_HERE
