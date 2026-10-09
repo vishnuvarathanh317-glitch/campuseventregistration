@@ -150,8 +150,13 @@ public class AuthenticationService {
             }
 
         } catch (SQLException e) {
-            System.err.println("[Auth] Login error: " + e.getMessage());
-            result.put("error", "Database error during login.");
+            System.err.println("[Auth] Login SQL error: " + e.getMessage());
+            e.printStackTrace();
+            result.put("error", "Database error during login: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("[Auth] Unexpected login error: " + e.getMessage());
+            e.printStackTrace();
+            result.put("error", "Login error: " + e.getMessage());
         }
 
         return result;

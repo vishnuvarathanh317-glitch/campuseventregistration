@@ -134,7 +134,11 @@ public class RegistrationDAO {
                     reg.setStudentEmail(rs.getString("email"));
                     reg.setDepartment(rs.getString("department"));
                     Object y = rs.getObject("year");
-                    reg.setYear(y != null ? (Integer) y : null);
+                    if (y instanceof Number n) {
+                        reg.setYear(n.intValue());
+                    } else {
+                        reg.setYear(null);
+                    }
                     reg.setPhone(rs.getString("phone"));
                     reg.setEventTitle(rs.getString("event_title"));
                     reg.setEventDate(rs.getString("event_date"));

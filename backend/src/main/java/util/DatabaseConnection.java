@@ -25,33 +25,29 @@ public class DatabaseConnection {
     }
 
     private void loadConfig() {
-        // 1. Check environment variables first (used on Render, Railway, etc.)
-        String envHost     = System.getenv("DB_HOST");
-        String envPort     = System.getenv("DB_PORT");
-        String envName     = System.getenv("DB_NAME");
-        String envUser     = System.getenv("DB_USERNAME");
-        String envPass     = System.getenv("DB_PASSWORD");
-        String envUrl      = System.getenv("DB_URL"); // full JDBC URL override
+        // 1. Check all common environment variable names (Render, Railway, Heroku, TiDB, Aiven, Clever Cloud)
+        String envUrl  = getFirstEnv("DB_URL", "DATABASE_URL", "MYSQL_URL", "JAWSDB_URL", "CLEARDB_DATABASE_URL");
+        String envHost = getFirstEnv("DB_HOST", "MYSQLHOST", "MYSQL_HOST");
+        String envPort = getFirstEnv("DB_PORT", "MYSQLPORT", "MYSQL_PORT");
+        String envName = getFirstEnv("DB_NAME", "MYSQLDATABASE", "MYSQL_DATABASE", "DB_DATABASE");
+        String envUser = getFirstEnv("DB_USERNAME", "DB_USER", "MYSQLUSER", "MYSQL_USER");
+        String envPass = getFirstEnv("DB_PASSWORD", "DB_PASS", "MYSQLPASSWORD", "MYSQL_PASSWORD");
 
         if (envUrl != null && !envUrl.isBlank()) {
-            // Full JDBC URL provided (e.g. Render internal DB URL)
-            this.url      = envUrl;
-            this.username = envUser != null ? envUser : "";
-            this.password = envPass != null ? envPass : "";
-            System.out.println("[DB] Using environment variable DB_URL");
+            parseAndSetDbUrl(envUrl.trim(), envUser, envPass);
+            System.out.println("[DB] Configured from DB_URL / DATABASE_URL: " + this.url);
             return;
         }
 
         if (envHost != null && !envHost.isBlank()) {
-            // Individual env vars provided
             String host = envHost.trim();
-            String port = envPort != null ? envPort.trim() : "3306";
-            String name = envName != null ? envName.trim() : "campus_events";
+            String port = (envPort != null && !envPort.isBlank()) ? envPort.trim() : "3306";
+            String name = (envName != null && !envName.isBlank()) ? envName.trim() : "campus_events";
             this.username = envUser != null ? envUser.trim() : "root";
             this.password = envPass != null ? envPass.trim() : "";
             this.url = "jdbc:mysql://" + host + ":" + port + "/" + name
-                     + "?useSSL=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-            System.out.println("[DB] Loaded from env vars: user=" + this.username + ", db=" + name + ", host=" + host + ":" + port);
+                     + "?sslMode=PREFERRED&serverTimezone=UTC&allowPublicKeyRetrieval=true&connectTimeout=10000&socketTimeout=30000";
+            System.out.println("[DB] Loaded from env vars: host=" + host + ":" + port + ", db=" + name + ", user=" + this.username);
             return;
         }
 
@@ -84,8 +80,17 @@ public class DatabaseConnection {
         return instance;
     }
 
-    public Connection getConnection() throws SQLException {
-        if (connection == null || connection.isClosed()) {
+    public synchronized Connection getConnection() throws SQLException {
+        boolean needNewConnection = false;
+        try {
+            if (connection == null || connection.isClosed() || !connection.isValid(2)) {
+                needNewConnection = true;
+            }
+        } catch (SQLException e) {
+            needNewConnection = true;
+        }
+
+        if (needNewConnection) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(url, username, password);
@@ -95,6 +100,51 @@ public class DatabaseConnection {
             }
         }
         return connection;
+    }
+
+    private String getFirstEnv(String... keys) {
+        for (String key : keys) {
+            String val = System.getenv(key);
+            if (val != null && !val.isBlank()) return val;
+        }
+        return null;
+    }
+
+    private void parseAndSetDbUrl(String rawUrl, String defaultUser, String defaultPass) {
+        String cleanUrl = rawUrl;
+        if (cleanUrl.startsWith("mysql://")) {
+            try {
+                java.net.URI uri = new java.net.URI(cleanUrl);
+                String userInfo = uri.getUserInfo();
+                if (userInfo != null && userInfo.contains(":")) {
+                    String[] parts = userInfo.split(":", 2);
+                    this.username = parts[0];
+                    this.password = parts[1];
+                } else if (userInfo != null) {
+                    this.username = userInfo;
+                    this.password = defaultPass != null ? defaultPass : "";
+                } else {
+                    this.username = defaultUser != null ? defaultUser : "";
+                    this.password = defaultPass != null ? defaultPass : "";
+                }
+                int port = uri.getPort() > 0 ? uri.getPort() : 3306;
+                String path = uri.getPath() != null && uri.getPath().length() > 1 ? uri.getPath() : "/campus_events";
+                this.url = "jdbc:mysql://" + uri.getHost() + ":" + port + path
+                         + "?sslMode=PREFERRED&serverTimezone=UTC&allowPublicKeyRetrieval=true&connectTimeout=10000&socketTimeout=30000";
+                return;
+            } catch (Exception e) {
+                cleanUrl = "jdbc:" + rawUrl;
+            }
+        }
+        if (!cleanUrl.startsWith("jdbc:")) {
+            cleanUrl = "jdbc:mysql://" + cleanUrl;
+        }
+        if (!cleanUrl.contains("?")) {
+            cleanUrl += "?sslMode=PREFERRED&serverTimezone=UTC&allowPublicKeyRetrieval=true&connectTimeout=10000&socketTimeout=30000";
+        }
+        this.url = cleanUrl;
+        this.username = defaultUser != null ? defaultUser : "";
+        this.password = defaultPass != null ? defaultPass : "";
     }
 
     public void closeConnection() {

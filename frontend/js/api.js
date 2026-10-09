@@ -3,8 +3,11 @@
  * Campus Event Registration System
  */
 
-// Auto-detect: use local backend when running on localhost, otherwise live Render backend
-const IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+// Auto-detect: use local backend when running on localhost or file protocol, otherwise live Render backend
+const IS_LOCAL = window.location.hostname === 'localhost' 
+              || window.location.hostname === '127.0.0.1' 
+              || window.location.hostname === '' 
+              || window.location.protocol === 'file:';
 const API_BASE = IS_LOCAL ? 'http://localhost:8080' : 'https://campuseventregistration.onrender.com';
 
 // ── Auth & Session Storage ──────────────────────────────────────────────────

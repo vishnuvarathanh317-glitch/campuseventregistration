@@ -160,7 +160,11 @@ public class UserDAO {
             Student student = new Student();
             student.setDepartment(rs.getString("department"));
             Object yearObj = rs.getObject("year");
-            student.setYear(yearObj != null ? (int) yearObj : 0);
+            if (yearObj instanceof Number n) {
+                student.setYear(n.intValue());
+            } else {
+                student.setYear(0);
+            }
             user = student;
         }
 

@@ -18,5 +18,9 @@ Thumbs.db
 test_login.ps1
 test_all.ps1
 
+# Config
+config.properties
+backend/config.properties
+
 # Logs
 *.log
